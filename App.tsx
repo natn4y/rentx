@@ -1,5 +1,9 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
+
+import theme from './src/styles/theme'
+import { ThemeProvider } from 'styled-components'
+
 import AppLoading from 'expo-app-loading'
 
 import {
@@ -29,5 +33,9 @@ export default function App(): JSX.Element {
     return <AppLoading />
   }
 
-  return <Home />
+  return (
+    <ThemeProvider theme={theme}>
+      <Home />
+    </ThemeProvider>
+  )
 }
