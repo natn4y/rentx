@@ -1,10 +1,13 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
+import { View } from 'react-native'
+import * as SplashScreen from 'expo-splash-screen'
+import * as Font from 'expo-font'
 import theme from './src/styles/theme'
 import { ThemeProvider } from 'styled-components'
-
-import AppLoading from 'expo-app-loading'
 
 import {
   useFonts,
@@ -21,21 +24,49 @@ import {
 import { Home } from './src/screens/Home'
 
 export default function App(): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Archivo_400Regular,
-    Archivo_500Medium,
-    Archivo_600SemiBold,
-  })
+  const [appIsReady, setAppIsReady] = useState(false)
 
-  if (!fontsLoaded) {
-    return <AppLoading />
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync()
+        await Font.loadAsync({
+          Inter_400Regular,
+          Inter_500Medium,
+          Archivo_400Regular,
+          Archivo_500Medium,
+          Archivo_600SemiBold,
+        })
+      } catch (e) {
+        console.warn(e)
+      } finally {
+        setAppIsReady(true)
+      }
+    }
+
+    prepare()
+  }, [])
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync()
+    }
+  }, [appIsReady])
+
+  if (!appIsReady) {
+    return null as any
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Home />
-    </ThemeProvider>
+    <View
+      onLayout={onLayoutRootView}
+      style={{
+        flex: 1,
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <Home />
+      </ThemeProvider>
+    </View>
   )
 }
