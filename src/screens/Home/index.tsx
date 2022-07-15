@@ -30,7 +30,6 @@ export function Home() {
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
-        translucent
       />
       <Header>
         <HeaderContent>
@@ -39,11 +38,11 @@ export function Home() {
         </HeaderContent>
       </Header>
       <CarList
-        data={[1, 2, 3]}                           // mock data loop
+        data={[1, 2, 3]} // mock data loop
         keyExtractor={(item: any) => String(item)} // extract key from item
-        renderItem={({ item }: any) => (           // render item from each mock data
-          <Car data={carData} />
-        )}
+        renderItem={(
+          { item }: any, // render item from each mock data
+        ) => <Car data={carData} />}
       />
     </Container>
   )
