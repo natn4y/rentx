@@ -24,7 +24,7 @@ export const CarImages = styled.View`
 
 export const Content = styled.ScrollView.attrs({
   contentContainerStyle: {
-    padding: 24,
+    padding: 20,
     alignItems: 'center',
   },
   showsVerticalScrollIndicator: false,
@@ -65,4 +65,12 @@ export const Price = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_400};
   color: ${({ theme }) => theme.colors.main};
   font-size: ${RFValue(25)}px;
+`
+export const About = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_400};
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(15)}px;
+  text-align: justify;
+
+  margin-top: 23px;
 `

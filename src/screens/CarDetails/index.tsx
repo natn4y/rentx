@@ -16,6 +16,7 @@ import {
   Rent,
   Period,
   Price,
+  About,
 } from './styles'
 
 export function CarDetails() {
@@ -47,6 +48,12 @@ export function CarDetails() {
             <Price>R$ 580</Price>
           </Rent>
         </Details>
+        <About>
+          Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </About>
       </Content>
     </Container>
   )
