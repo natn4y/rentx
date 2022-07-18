@@ -68,7 +68,7 @@ export default function App(): JSX.Element {
       }}
     >
       <ThemeProvider theme={theme}>
-        <CarDetails />
+        <Scheduling />
       </ThemeProvider>
     </GestureHandlerRootView>
   )
