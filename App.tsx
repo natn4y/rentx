@@ -1,9 +1,10 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import React, {
   useCallback,
   useEffect,
   useState,
 } from 'react'
-import { View } from 'react-native'
+
 import * as SplashScreen from 'expo-splash-screen'
 import * as Font from 'expo-font'
 import theme from './src/styles/theme'
@@ -60,15 +61,15 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <View
+    <GestureHandlerRootView
       onLayout={onLayoutRootView}
       style={{
         flex: 1,
       }}
     >
       <ThemeProvider theme={theme}>
-        <Scheduling />
+        <CarDetails />
       </ThemeProvider>
-    </View>
+    </GestureHandlerRootView>
   )
 }
