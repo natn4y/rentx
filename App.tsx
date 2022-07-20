@@ -22,11 +22,7 @@ import {
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo'
 
-//import { Home } from './src/screens/Home'
-import { CarDetails } from './src/screens/CarDetails/index'
-import { Scheduling } from './src/screens/Scheduling/index'
-import { SchedulingDetails } from './src/screens/SchedulingDetails/index'
-import { SchedulingComplete } from './src/screens/SchedulingComplete/index'
+import { Routes } from './src/routes'
 
 export default function App(): JSX.Element {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -70,7 +66,7 @@ export default function App(): JSX.Element {
       }}
     >
       <ThemeProvider theme={theme}>
-        <SchedulingComplete />
+        <Routes />
       </ThemeProvider>
     </GestureHandlerRootView>
   )
