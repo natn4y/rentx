@@ -26,6 +26,7 @@ import {
 import { CarDetails } from './src/screens/CarDetails/index'
 import { Scheduling } from './src/screens/Scheduling/index'
 import { SchedulingDetails } from './src/screens/SchedulingDetails/index'
+import { SchedulingComplete } from './src/screens/SchedulingComplete/index'
 
 export default function App(): JSX.Element {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -69,7 +70,7 @@ export default function App(): JSX.Element {
       }}
     >
       <ThemeProvider theme={theme}>
-        <SchedulingDetails />
+        <SchedulingComplete />
       </ThemeProvider>
     </GestureHandlerRootView>
   )
