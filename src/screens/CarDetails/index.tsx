@@ -1,5 +1,9 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
+import {
+  CommonActions,
+  useNavigation,
+} from '@react-navigation/native'
 
 import { BackButton } from '../../components/BackButton'
 import { ImageSlider } from '../../components/ImageSlider'
@@ -31,6 +35,16 @@ import {
 } from './styles'
 
 export function CarDetails() {
+  const navigation = useNavigation()
+
+  function handleNavigationToScheduling() {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Scheduling',
+      }),
+    )
+  }
+
   return (
     <Container>
       <StatusBar
@@ -85,7 +99,10 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Escolher período do aluguel"
+          onPress={handleNavigationToScheduling}
+        />
       </Footer>
     </Container>
   )
