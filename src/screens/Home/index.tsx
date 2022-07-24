@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CommonActions,
   useNavigation,
@@ -6,6 +6,9 @@ import {
 import { StatusBar } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import Logo from '../../assets/logo.svg'
+
+import api from '../../services/api'
+import { CarDTO } from '../../dtos/CarDTO'
 
 import { Car } from '../../components/Car'
 
@@ -18,18 +21,24 @@ import {
 } from './styles'
 
 export function Home() {
+  const [cars, setCars] = useState<CarDTO[]>([])
+  const [loading, setLoading] = useState(true)
+
   const navigation = useNavigation()
 
-  const carData = {
-    brand: 'Audi',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'AO DIA',
-      price: 120,
-    },
-    thumbnail:
-      'https://www.pngkey.com/png/full/383-3833840_rs-5-coup-price-from-audi-rs5-png.png',
-  }
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const response = await api.get('/cars')
+        setCars(response.data)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchCars()
+  }, [])
 
   function handleNavigationToCarDetails() {
     navigation.dispatch(
@@ -53,13 +62,13 @@ export function Home() {
         </HeaderContent>
       </Header>
       <CarList
-        data={[1, 2, 3]} // mock data loop
-        keyExtractor={(item: any) => String(item)} // extract key from item
+        data={cars} // mock data loop
+        keyExtractor={item => item.id} // extract key from item
         renderItem={(
-          { item }: any, // render item from each mock data
+          { item }, // render item from each mock data
         ) => (
           <Car
-            data={carData}
+            data={item}
             onPress={handleNavigationToCarDetails}
           />
         )}
