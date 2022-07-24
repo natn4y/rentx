@@ -11,6 +11,7 @@ import api from '../../services/api'
 import { CarDTO } from '../../dtos/CarDTO'
 
 import { Car } from '../../components/Car'
+import { Load } from '../../components/Load'
 
 import {
   Container,
@@ -61,18 +62,22 @@ export function Home() {
           <TotalCars>Total de 12 carros</TotalCars>
         </HeaderContent>
       </Header>
-      <CarList
-        data={cars} // mock data loop
-        keyExtractor={item => item.id} // extract key from item
-        renderItem={(
-          { item }, // render item from each mock data
-        ) => (
-          <Car
-            data={item}
-            onPress={handleNavigationToCarDetails}
-          />
-        )}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <CarList
+          data={cars} // mock data loop
+          keyExtractor={item => item.id} // extract key from item
+          renderItem={(
+            { item }, // render item from each mock data
+          ) => (
+            <Car
+              data={item}
+              onPress={handleNavigationToCarDetails}
+            />
+          )}
+        />
+      )}
     </Container>
   )
 }
