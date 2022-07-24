@@ -5,6 +5,11 @@ import {
   StatusBar,
 } from 'react-native'
 
+import {
+  CommonActions,
+  useNavigation,
+} from '@react-navigation/native'
+
 import LogoSvg from '../../assets/logo_background_gray.svg'
 import DoneSvg from '../../assets/done.svg'
 
@@ -22,12 +27,23 @@ import {
 
 export function SchedulingComplete() {
   const { width } = useWindowDimensions() //- pega a largura da tela "Só pode ser definido dentro do componente"
+
+  const navigation = useNavigation()
+
+  function handleNavigationToHome() {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Home',
+      }),
+    )
+  }
+
   return (
     <Container>
       <StatusBar
-        barStyle='light-content'
+        barStyle="light-content"
         translucent
-        backgroundColor='transparent'
+        backgroundColor="transparent"
       />
       <LogoSvg width={width} />
 
@@ -43,7 +59,7 @@ export function SchedulingComplete() {
       </Content>
 
       <Footer>
-        <ConfirmButton title="Ok" />
+        <ConfirmButton title="Ok" onPress={handleNavigationToHome} />
       </Footer>
     </Container>
   )
