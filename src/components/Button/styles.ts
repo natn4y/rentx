@@ -7,7 +7,7 @@ import {
 } from 'react-native-gesture-handler'
 
 interface ButtonProps extends RectButtonProps {
-  color?: string
+  color: string
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -15,8 +15,7 @@ export const Container = styled(RectButton)<ButtonProps>`
   padding: 19px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ color, theme }) =>
-    color ? color : theme.colors.main};
+  background-color: ${({ color }) => color};
 `
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_500};
